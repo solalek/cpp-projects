@@ -27,12 +27,17 @@ T * Array<T>::merge(T arr1[], int size1, T arr2[], int size2) {
 template<typename T>
 T * Array<T>::_merge_sort(T arr[], int size) {
     if (size == 1) {
-        return arr;
+        T *single = new T[1];
+        single[0] = arr[0];
+        return single;
     }
     int mid = size/2;
-    return merge(
-            _merge_sort(arr, mid), mid, 
-            _merge_sort(arr+mid, size-mid), size-mid);
+    T *leftArr = _merge_sort(arr, mid);
+    T *rightArr = _merge_sort(arr+mid, size-mid);
+    T *sortedArr = merge(leftArr, mid, rightArr, size-mid);
+    delete[] leftArr;
+    delete[] rightArr;
+    return sortedArr;
 }
 
 template<typename T>
