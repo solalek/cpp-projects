@@ -204,6 +204,6 @@ void Array<T>::deleteAt(int index) {
         for (int i = index; i < Size; i++) {
             arr[i] = arr[i+1];
         }
+        Size--;
     }
-    Size--;
 }
